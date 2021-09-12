@@ -29,6 +29,6 @@ public class Hooks {
 //        SessionId session =((ChromeDriver) Driver.getDriver()).getSessionId();
 //        System.out.println("Session id: " + session.toString());
 
-       Driver.closeDriver();
+       //Driver.closeDriver();
     }
 }

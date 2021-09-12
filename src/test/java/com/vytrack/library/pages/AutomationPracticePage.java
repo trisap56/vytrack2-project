@@ -80,4 +80,7 @@ public class AutomationPracticePage extends BasePage{
 
     @FindBy(xpath = "//p[@class='info-account']")
     public WebElement accCreatedText;
+
+    @FindBy(xpath = "//div[@id='create_account_error']/ol/li")
+    public WebElement errorText;
 }

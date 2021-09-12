@@ -62,7 +62,8 @@ public class TLEcom_step_definitions {
     }
 
     @Then("Click on Register button.")
-    public void click_on_register_button() {
+    public void click_on_register_button() throws IOException {
+        BrowserUtils.waitForVisibility(apPage.submitAccount,10);
         apPage.submitAccount.click();
     }
     @Then("Validate that user is created.")
@@ -70,5 +71,33 @@ public class TLEcom_step_definitions {
         BrowserUtils.waitForVisibility(apPage.accCreatedText,10);
         Assert.assertEquals(apPage.accCreatedText.getText(),"Welcome to your account. Here you can manage all of your personal information and orders.");
     }
+    @Given("I open the url")
+    public void i_open_the_url() {
+        Driver.getDriver().get("http://automationpractice.com/index.php");
+    }
+    @When("I Click sign in link")
+    public void i_click_sign_in_link() {
+        apPage.signIn.click();
+    }
+    @When("Enter {string} in Create and account")
+    public void enter_in_create_and_account(String string) throws IOException {
+        BrowserUtils.waitForVisibility(apPage.emailBox,20);
+        apPage.emailBox.sendKeys(string);
+    }
+    @Then("Click on Create an Account.")
+    public void click_on_create_an_account() throws IOException {
+        BrowserUtils.waitForVisibility(apPage.submitAccount,10);
+        apPage.emailBox.sendKeys("1326458465");
+        apPage.submitAccount.click();
+    }
+    @Then("I validate that an error message is displaying saying {string}")
+    public void i_validate_that_an_error_message_is_displaying_saying(String expectedMsg) {
+        String actualMsg = apPage.errorText.getText();
+        Assert.assertTrue(actualMsg.contains(expectedMsg));
+        System.out.println("actualMsg = " + actualMsg);
+    }
+
+
+
 
 }
